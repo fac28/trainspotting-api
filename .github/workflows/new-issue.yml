@@ -1,27 +1,12 @@
-name: Automate Issue Creation
-
 on:
   issues:
-    types:
-      - opened
-
+    types: [opened]
 jobs:
-  automate-issue-creation:
+  Add_New_Issue_To_Project:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Get project column ID
-        id: project_column
-        run: |
-          TOKEN=$GITHUB_TOKEN
-          COLUMN_ID=$(curl -s "https://api.github.com/projects/3/columns" -H "Authorization: Bearer $TOKEN" | jq --argjson colName "New" -r '.[] | select(.name == $colName).id')
-
-
-
-      - name: Add issue to project board
-        run: |
-          TOKEN=$GITHUB_TOKEN
-          ISSUE_NUMBER=$(jq --raw-output .issue.number "$GITHUB_EVENT_PATH")
-          COLUMN_ID=${{ steps.project_column.outputs.COLUMN_ID }}
-
-          curl -s -X POST "https://api.github.com/projects/columns/$COLUMN_ID/cards" -H "Authorization: Bearer $TOKEN" -H "Accept: application/vnd.github.inertia-preview+json" -d "{\"content_id\": $ISSUE_NUMBER, \"content_type\": \"Issue\"}"
+    - uses: konradpabjan/actions-add-new-issue-to-column@v1.1
+      with:
+        action-token: "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"
+        project-url: "https://github.com/users/carlosbuitragosan/projects/3"
+        column-name: "New"
