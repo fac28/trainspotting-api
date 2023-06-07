@@ -10,12 +10,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Get project column ID
+        id: project_column
+        run: |
+          TOKEN=$GITHUB_TOKEN
+          COLUMN_URL=$(curl -s "https://api.github.com/projects/3/columns" -H "Authorization: Bearer $TOKEN" | jq '.[] | select(.name == "New") | .id')
+          COLUMN_ID=$(basename "$COLUMN_URL")
+
       - name: Add issue to project board
         run: |
           TOKEN=$GITHUB_TOKEN
-          COLUMN_ID=$(curl -s "https://api.github.com/projects/3/columns" -H "Authorization: Bearer $TOKEN" | jq '.[] | select(.name == "New") | .id')
-
           ISSUE_NUMBER=$(jq --raw-output .issue.number "$GITHUB_EVENT_PATH")
-
+          COLUMN_ID=$(echo "$COLUMN_URL" | awk -F/ '{print $NF}')
 
           curl -s -X POST "https://api.github.com/projects/columns/$COLUMN_ID/cards" -H "Authorization: Bearer $TOKEN" -H "Accept: application/vnd.github.inertia-preview+json" -d "{\"content_id\": $ISSUE_NUMBER, \"content_type\": \"Issue\"}"
