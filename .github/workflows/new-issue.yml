@@ -13,7 +13,7 @@ jobs:
       - name: Add issue to project board
         run: |
           TOKEN=$GITHUB_TOKEN
-          COLUMN_ID=$(curl -s "https://api.github.com/projects/1/columns" -H "Authorization: Bearer $TOKEN" | jq '.[] | select(.name == "New") | .id')
+          COLUMN_ID=$(curl -s "https://api.github.com/projects/3/columns" -H "Authorization: Bearer $TOKEN" | jq '.[] | select(.name == "New") | .id')
 
           ISSUE_NUMBER=$(jq --raw-output .issue.number "$GITHUB_EVENT_PATH")
 
