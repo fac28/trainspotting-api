@@ -14,7 +14,8 @@ jobs:
         id: project_column
         run: |
           TOKEN=$GITHUB_TOKEN
-          COLUMN_ID=$(curl -s "https://api.github.com/projects/3/columns" -H "Authorization: Bearer $TOKEN" | jq --argjson colName "New" -r '.[] | select(.name == $colName) | .id')
+          COLUMN_ID=$(curl -s "https://api.github.com/projects/3/columns" -H "Authorization: Bearer $TOKEN" | jq --argjson colName "New" -r '.[] | select(.name == $colName).id')
+
 
 
       - name: Add issue to project board
