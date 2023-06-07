@@ -11,8 +11,11 @@ jobs:
 
     steps:
       - name: Add issue to project board
-        uses: github/scripts-to-rule-them-all@v2
-        with:
-          script: issue-to-project-board
-        env:
-          PROJECT_COLUMN_NAME: New
+        run: |
+          TOKEN=$GITHUB_TOKEN
+          COLUMN_ID=$(curl -s "https://api.github.com/projects/1/columns" -H "Authorization: Bearer $TOKEN" | jq '.[] | select(.name == "New") | .id')
+
+          ISSUE_NUMBER=$(jq --raw-output .issue.number "$GITHUB_EVENT_PATH")
+
+
+          curl -s -X POST "https://api.github.com/projects/columns/$COLUMN_ID/cards" -H "Authorization: Bearer $TOKEN" -H "Accept: application/vnd.github.inertia-preview+json" -d "{\"content_id\": $ISSUE_NUMBER, \"content_type\": \"Issue\"}"
