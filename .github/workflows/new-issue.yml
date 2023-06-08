@@ -5,8 +5,9 @@ jobs:
   Add_New_Issue_To_Project:
     runs-on: ubuntu-latest
     steps:
-    - uses: carlosbuitragosan/api/.github/workflows/new-issue.yml@develop
-      with:
-        action-token: "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"
-        project-url: "https://github.com/users/carlosbuitragosan/projects/3"
-        column-name: "New"
+      - name: Add new issue to project
+        uses: carlosbuitragosan/api/.github/workflows/new-issue.yml@main
+        with:
+          action-token: ${{ secrets.GITHUB_TOKEN }}
+          project-url: "https://github.com/users/carlosbuitragosan/projects/3"
+          column-name: "New"
