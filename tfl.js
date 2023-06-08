@@ -2,7 +2,7 @@
 
 const stationId = '940GZZLUFPK'; // Finsbury Park station ID for Victoria Line
 // const appKey = process.env.API_KEY; // Retrieve the API key from the environment variable
-const appKey = "8f1ffc29e7324e588044ae87130f1d7f";
+const appKey = "trustno1";
 
 function getDepartureTimes() {
   const url = `https://api.tfl.gov.uk/Line/victoria/Arrivals/${stationId}`;
