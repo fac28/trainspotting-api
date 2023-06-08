@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>tfl api page</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+  </head>
+  <body>
+    <h1>Departure Times</h1>
+    <section id="departureInfo">
+      <table>
+        <thead>
+          <tr>
+            <th>Departure Number</th>
+            <th>Platform</th>
+            <th>Destination</th>
+            <th>Time to Station (Minutes)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Loop through the array and populate the table -->
+          <tr>
+            <td>{{ departureNumber }}</td>
+            <td>{{ platform }}</td>
+            <td>{{ destination }}</td>
+            <td>{{ timeToStationMinutes }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <script src="tfl.js"></script>
+  </body>
+</html>
