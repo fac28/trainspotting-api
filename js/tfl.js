@@ -4,7 +4,6 @@ const appKey = String(API_KEY_PLACEHOLDER);
 const inboundTable = document.querySelector('#inbound-table');
 const outboundTable = document.querySelector('#outbound-table');
 
-console.log(appKey)
 function getDepartureTimes() {
   const url = `https://api.tfl.gov.uk/Line/victoria/Arrivals/${stationId}`;
   fetch(url, {
