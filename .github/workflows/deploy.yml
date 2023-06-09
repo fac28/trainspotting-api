@@ -1,0 +1,25 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - secret
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Replace API key
+        run: sed -i 's/API_KEY_PLACEHOLDER/${{ secrets.APPKEY }}/g' js/tfl.js
+
+      - name: Build and deploy
+        run: |
+          # Add commands here to build your project, if necessary
+          # For example: npm install && npm run build
+
+          # Deploy to GitHub Pages
+          npx gh-pages -d .
