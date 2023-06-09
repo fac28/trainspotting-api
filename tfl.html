@@ -5,18 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>tfl api page</title>
-    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="css/index.css">
   </head>
   <body>
     <h1>Departure Times</h1>
     <section id="departureInfo">
-      <table>
+      <h2> Southbound</h2>
+      <table id="inbound-table">
         <thead>
           <tr>
-            <th>Departure Number</th>
             <th>Platform</th>
             <th>Destination</th>
-            <th>Time to Station (Minutes)</th>
+            <th>Arriving in</th>
+            <th>Arrival Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Loop through the array and populate the table -->
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table id="outbound-table">
+        <h2> Northbound</h2>
+        <thead>
+          <tr>
+            <th>Platform</th>
+            <th>Destination</th>
+            <th>Arriving in</th>
             <th>Arrival Time</th>
           </tr>
         </thead>
@@ -32,7 +54,7 @@
         </tbody>
       </table>
     </section>
-    <!-- <script src="tfl.js"></script> -->
-    <script src="js/tfl.js"></script>
+    <script src="tfl-local.js"></script>
+    <!-- <script src="js/tfl.js"></script> -->
   </body>
 </html>
