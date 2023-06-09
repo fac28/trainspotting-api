@@ -1,5 +1,5 @@
 const stationId = '940GZZLUFPK'; // Finsbury Park station ID for Victoria Line
-const appKey = "trustno1";
+const appKey = API_KEY_PLACEHOLDER;
 
 const inboundTable = document.querySelector('#inbound-table');
 const outboundTable = document.querySelector('#outbound-table');
@@ -83,9 +83,6 @@ function retrieveDepartureTimes(departures) {
 
     departureInfoArray.push(departureInfo); // Append departureInfo object to the array
     localStorage.setItem('myStorage', JSON.stringify(departureInfoArray));
-
-    window.location.reload(true);
-    window.stop();
 }}
 
 const departureInfoArray = JSON.parse(localStorage.getItem('myStorage'));
