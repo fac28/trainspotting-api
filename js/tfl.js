@@ -1,9 +1,10 @@
 const stationId = '940GZZLUFPK'; // Finsbury Park station ID for Victoria Line
-const appKey = "trustno1";
+const appKey = String(API_KEY_PLACEHOLDER);
 
 const inboundTable = document.querySelector('#inbound-table');
 const outboundTable = document.querySelector('#outbound-table');
 
+console.log(appKey)
 function getDepartureTimes() {
   const url = `https://api.tfl.gov.uk/Line/victoria/Arrivals/${stationId}`;
   fetch(url, {
@@ -37,9 +38,9 @@ function getDepartureTimes() {
       localStorage.setItem('myStorage', JSON.stringify(departureInfoArray));
       return;}
 
-    // const currentTime = departures[0].timestamp;
-    // const currentTimeBST = new Date(currentTime).toLocaleTimeString('en-GB', { timeZone: 'Europe/London' });
-    // console.log('Current Time:', currentTimeBST);
+    const currentTime = departures[0].timestamp;
+    const currentTimeBST = new Date(currentTime).toLocaleTimeString('en-GB', { timeZone: 'Europe/London' });
+    console.log('Current Time:', currentTimeBST);
 
     retrieveDepartureTimes(departures)
   })
@@ -55,9 +56,9 @@ function retrieveDepartureTimes(departures) {
     //write a for loop the get the next three departures
   let num = departures.length;
 
-  // only get the next 3 departures max
-  if (num> 3) {
-    num = 3;
+  // only get the next 5 departures max
+  if (num > 5) {
+    num = 5;
   }
 
   for (let i = 0; i < num; i++) {
@@ -83,9 +84,6 @@ function retrieveDepartureTimes(departures) {
 
     departureInfoArray.push(departureInfo); // Append departureInfo object to the array
     localStorage.setItem('myStorage', JSON.stringify(departureInfoArray));
-
-    window.location.reload(true);
-    window.stop();
 }}
 
 const departureInfoArray = JSON.parse(localStorage.getItem('myStorage'));
@@ -106,7 +104,7 @@ for (const item of departureInfoArray) {
     row.appendChild(cell);
     }
   }
-  // table.appendChild(row);
+
   if (item.direction === 'inbound') {
     inboundTable.appendChild(row);
   } else if (item.direction === 'outbound') {
