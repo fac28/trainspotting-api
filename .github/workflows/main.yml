@@ -3,7 +3,7 @@ name: API Key Replacement
 on:
   push:
     branches:
-      - main
+      - secret
 
 jobs:
   build:
