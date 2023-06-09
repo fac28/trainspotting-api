@@ -1,0 +1,27 @@
+* {
+    font-family: 'Lato', sans-serif;
+    box-sizing: border-box;
+}
+img {
+    max-width: 100%;
+}
+
+
+
+/* ////////////////  HEADER ///////////////// */
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* .logo {
+    flex: 1;
+    order: -1;
+}
+
+.header__title {
+    flex: 1;
+
+} */
