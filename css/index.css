@@ -6,6 +6,14 @@ img {
     max-width: 100%;
 }
 
+html {
+    background: url('https://picsum.photos/1800/1000');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
 
 
 /* ////////////////  HEADER ///////////////// */
@@ -16,12 +24,4 @@ img {
     justify-content: center;
 }
 
-/* .logo {
-    flex: 1;
-    order: -1;
-}
-
-.header__title {
-    flex: 1;
-
-} */
+/*   */
