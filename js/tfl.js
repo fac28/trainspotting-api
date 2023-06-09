@@ -1,5 +1,5 @@
 const stationId = '940GZZLUFPK'; // Finsbury Park station ID for Victoria Line
-const appKey = API_KEY_PLACEHOLDER;
+const appKey = String(API_KEY_PLACEHOLDER);
 
 const inboundTable = document.querySelector('#inbound-table');
 const outboundTable = document.querySelector('#outbound-table');
