@@ -1,41 +1,33 @@
 const stationId = '940GZZLUFPK'; // Finsbury Park station ID for Victoria Line
-const appKey = String(API_KEY_PLACEHOLDER);
 
+const table = document.querySelector('table');
 const inboundTable = document.querySelector('#inbound-table');
 const outboundTable = document.querySelector('#outbound-table');
 
 function getDepartureTimes() {
-  const url = `https://api.tfl.gov.uk/Line/victoria/Arrivals/${stationId}`;
-  fetch(url, {
-    method: 'GET',
-    headers: {
-      'app_key': appKey
-    }
-  })
+  // query the tfl proxy we made
+  const url = 'https://tfl-irbcjbnqca-ew.a.run.app/search'
+  fetch (url)
   .then(response => {
     if (response.ok) {
       return response.json();
     } else {
-      if (response.status==429){
-        console.log('API keys wrong');
-        throw new Error('API keys wrong');
-      }
       console.log(response.status);
       throw new Error('Error retrieving departure times');
     }
   })
   .then(departures => {
-    console.log(departures)
+    // display error message if no train found (not tested yet)
     if (departures.length === 0) {
-      const departureInfoArray = [];
       console.log('No departures')
-      let departureInfo = {
-        platform: 'Sorry, no train info available at the moment.'
-      };
 
-      departureInfoArray.push(departureInfo); // Append departureInfo object to the array
-      localStorage.setItem('myStorage', JSON.stringify(departureInfoArray));
-      return;}
+      const row = document.createElement('tr');
+      const cell = document.createElement('td');
+      cell.textContent = 'Sorry, no train info available at the moment.';
+      row.appendChild(cell);
+      table.appendChild(row);
+      return;
+    }
 
     const currentTime = departures[0].timestamp;
     const currentTimeBST = new Date(currentTime).toLocaleTimeString('en-GB', { timeZone: 'Europe/London' });
@@ -52,10 +44,9 @@ getDepartureTimes()
 function retrieveDepartureTimes(departures) {
 
   const departureInfoArray = [];
-    //write a for loop the get the next three departures
-  let num = departures.length;
 
   // only get the next 5 departures max
+  let num = departures.length;
   if (num > 5) {
     num = 5;
   }
@@ -76,7 +67,8 @@ function retrieveDepartureTimes(departures) {
       departureNumber: i + 1,
       platform: platform,
       destination: destination,
-      timeToStationMinutes: timeToStationMinutes + ' mins',
+      timeToStationMinutes: timeToStationMinutes,
+      arriveIn: timeToStationMinutes + ' mins',
       ArrivalTime: adjustedArrival,
       direction: direction
     };
@@ -85,11 +77,13 @@ function retrieveDepartureTimes(departures) {
     localStorage.setItem('myStorage', JSON.stringify(departureInfoArray));
 }}
 
-const departureInfoArray = JSON.parse(localStorage.getItem('myStorage'));
-
+const departureInfoArray = JSON.parse(localStorage.getItem('myStorage'))
+.sort(function(a, b) {
+  console.log(a.timeToStationMinutes - b.timeToStationMinutes);
+  return a.timeToStationMinutes - b.timeToStationMinutes;
+});
 console.log(departureInfoArray);
 
-const table = document.querySelector('table');
 
 if (departureInfoArray) {
 
@@ -97,7 +91,7 @@ for (const item of departureInfoArray) {
 
   const row = document.createElement('tr');
   for (const key in item) {
-    if (key!=='direction' && key!=='departureNumber') {
+    if (key!=='direction' && key!=='departureNumber' && key!=='timeToStationMinutes') {
     const cell = document.createElement('td');
     cell.textContent = item[key];
     row.appendChild(cell);
