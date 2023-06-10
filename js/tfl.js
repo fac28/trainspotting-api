@@ -2,10 +2,19 @@ const table = document.querySelector("table");
 const inboundTable = document.querySelector("#inbound-table");
 const outboundTable = document.querySelector("#outbound-table");
 
-function getDepartureTimes() {
+// create object of station names and their ids
+const stationNames = {
+  "Euston": "940GZZLUEUS",
+  "Finsbury Park": "940GZZLUFPK",
+  "Vauxhall": "940GZZLUVXL",
+};
+
+function getDepartureTimes(station = "Finsbury Park") {
+  // retrieve station id from station name
+  const station_id = stationNames[station];
   // query the tfl proxy we made
   const url = "https://tfl-irbcjbnqca-og.a.run.app/search";
-  fetch(url)
+  fetch(url + "?station_id=" + station_id)
     .then((response) => {
       if (response.ok) {
         return response.json();
@@ -16,9 +25,12 @@ function getDepartureTimes() {
     })
     .then((allDepartures) => {
       // only keep departures from Finsbury Park
-      const departures = allDepartures.filter((departure) =>
-        departure.stationName.includes("Finsbury Park")
-      );
+      console.log('all', allDepartures)
+      // const departures = allDepartures.filter((departure) =>
+      //   departure.stationName.includes("Finsbury Park")
+      // );
+
+      const departures = allDepartures;
 
       // display error message if no train found (not tested yet)
       if (departures.length === 0) {
@@ -33,10 +45,12 @@ function getDepartureTimes() {
       }
 
       const currentTime = departures[0].timestamp;
+      const stationName = departures[0].stationName;
       const currentTimeBST = new Date(currentTime).toLocaleTimeString("en-GB", {
         timeZone: "Europe/London",
       });
       console.log("Current Time:", currentTimeBST);
+      console.log("Station Name:", stationName);
 
       retrieveDepartureTimes(departures);
 
@@ -80,6 +94,7 @@ function retrieveDepartureTimes(departures) {
       { timeZone: "Europe/London" }
     );
     let direction = departure.direction;
+    const stationName = departure.stationName;
 
     // removing white space from destination and filling in missing direction
     if (destination === "Walthamstow Central ") {
@@ -99,6 +114,7 @@ function retrieveDepartureTimes(departures) {
       arriveIn: timeToStationMinutes + " mins",
       ArrivalTime: adjustedArrival,
       direction: direction,
+      stationName: stationName,
     };
 
     departureInfoArray.push(departureInfo); // Append departureInfo object to the array
@@ -156,12 +172,20 @@ function removeDuplicates(array) {
 }
 
 function populateTable(array, direction) {
+  // target the h3 element with id station-name to fill in station name
+  const stationName = array[0].stationName;
+  const stationNameElement = document.getElementById("station-name");
+  stationNameElement.textContent = stationName;
+
+  // TO-DO: remove all tr elements from inbound and outbound table
+
   // function to loop through array and populate table accordingly
   for (const item of array) {
     const row = document.createElement("tr");
     for (const key in item) {
       if (
-        !["direction", "departureNumber", "timeToStationMinutes"].includes(key)
+        !["direction", "departureNumber",
+        "timeToStationMinutes", "stationName"].includes(key)
       ) {
         const cell = document.createElement("td");
         cell.textContent = item[key];
@@ -180,4 +204,15 @@ function populateTable(array, direction) {
   }
 }
 
-getDepartureTimes();
+//retrieve user choice in the form selector
+// const form = document.querySelector("form");
+// form.addEventListener("submit", handleSubmit);
+
+// function handleSubmit(event) {
+//   event.preventDefault();
+//   const station = document.querySelector("#station").value;
+//   console.log("station: ", station);
+//   getDepartureTimes(station);
+// }
+
+getDepartureTimes("Vauxhall");
