@@ -4,7 +4,7 @@ const outboundTable = document.querySelector("#outbound-table");
 
 function getDepartureTimes() {
   // query the tfl proxy we made
-  const url = "https://tfl-irbcjbnqca-ew.a.run.app/search";
+  const url = "https://tfl-irbcjbnqca-og.a.run.app/search";
   fetch(url)
     .then((response) => {
       if (response.ok) {
