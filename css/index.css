@@ -7,7 +7,7 @@ img {
 }
 
 html {
-    background: url('https://picsum.photos/1800/1000');
+    background-image: url('https://picsum.photos/1800/1000');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -19,6 +19,7 @@ html {
 /* ////////////////  HEADER ///////////////// */
 
 .header {
+    background-color: #0002;
     display: flex;
     align-items: center;
     justify-content: center;
