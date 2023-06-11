@@ -2,6 +2,7 @@ const table = document.querySelector("table");
 const inboundTable = document.querySelector("#inbound-table");
 const outboundTable = document.querySelector("#outbound-table");
 
+
 // create object of station names and their ids
 const stationNames = {
   "Euston": "940GZZLUEUS",
@@ -118,8 +119,9 @@ function retrieveDepartureTimes(departures) {
     };
 
     departureInfoArray.push(departureInfo); // Append departureInfo object to the array
-    localStorage.setItem("myStorage", JSON.stringify(departureInfoArray));
   }
+
+  localStorage.setItem("myStorage", JSON.stringify(departureInfoArray));
 }
 
 function sortDepartures(departureInfoArray) {
@@ -172,12 +174,19 @@ function removeDuplicates(array) {
 }
 
 function populateTable(array, direction) {
+
+  const currentTable = direction === "inbound" ? inboundTable : outboundTable;
+
+  // Clear the tablebody
+  const tableBody = currentTable.querySelector("tbody");
+  while (tableBody.firstChild) {
+    tableBody.firstChild.remove();
+  }
+
   // target the h3 element with id station-name to fill in station name
   const stationName = array[0].stationName;
   const stationNameElement = document.getElementById("station-name");
   stationNameElement.textContent = stationName;
-
-  // TO-DO: remove all tr elements from inbound and outbound table
 
   // function to loop through array and populate table accordingly
   for (const item of array) {
@@ -192,27 +201,33 @@ function populateTable(array, direction) {
         row.appendChild(cell);
       }
     }
-
-    if (direction === "inbound") {
-      inboundTable.appendChild(row);
-    }
-    if (direction === "outbound") {
-      outboundTable.appendChild(row);
-    }
-
+    tableBody.appendChild(row);
     console.log(direction + " information added to table");
   }
 }
 
 //retrieve user choice in the form selector
-// const form = document.querySelector("form");
-// form.addEventListener("submit", handleSubmit);
+const form = document.querySelector("form");
+form.addEventListener("submit", handleSubmit);
 
-// function handleSubmit(event) {
-//   event.preventDefault();
-//   const station = document.querySelector("#station").value;
-//   console.log("station: ", station);
-//   getDepartureTimes(station);
-// }
+function handleSubmit(event) {
+  event.preventDefault();
+  const station = document.querySelector("#station").value;
+  console.log("station: ", station);
 
-getDepartureTimes("Vauxhall");
+  getDepartureTimes(station);
+  return;
+}
+
+function clearTable(tableId) {
+  var tableBody = document.querySelector("#" + tableId + " tbody");
+  var tableRows = tableBody.querySelectorAll("tr");
+
+  // Remove all <tr> elements
+  for (var i = 0; i < tableRows.length; i++) {
+    var row = tableRows[i];
+    row.remove();
+  }
+
+  localStorage.removeItem("myStorage");
+}
