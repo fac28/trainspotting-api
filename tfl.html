@@ -4,12 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>tfl api page</title>
+    <title>Departure Time</title>
     <link rel="stylesheet" href="css/tfl.css">
   </head>
   <body>
     <h1>Departure Times</h1>
+
+    <form>
+      <label for="station">Choose a station:</label>
+      <select id="station">
+        <option value="Euston">Euston</option>
+        <option value="Finsbury Park">Finsbury Park</option>
+        <option value="Vauxhall">Vauxhall</option>
+      </select>
+      <input type="submit" value="Submit">
+    </form>
+
+
+
+
+
+    <h3 id='station-name'></h3>
+
     <section id="departureInfo">
+
       <h2> Southbound</h2>
       <table id="inbound-table">
         <thead>
