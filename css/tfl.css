@@ -18,7 +18,7 @@ h3 {
 
 table {
   margin: auto;
-  width: 70%;
+  width: 80%;
   table-layout: fixed;
   text-align: center;
   background-color: black;
@@ -35,7 +35,10 @@ th, td {
   flex-grow: 1;
   font-weight: bold;
   padding: 10px;
-  overflow: scroll
+  overflow: scroll;
+  word-break: break-word;
+  word-wrap: break-word;
+  font-size: 0.8 rem;
 }
 
 th {
@@ -49,4 +52,93 @@ td {
 
 tbody tr:not(:has(td:empty)):hover {
   background-color: rgba(255, 248, 39, 0.563);
+}
+
+.destination-name {
+  display: inline-block;
+  max-width: 80%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  max-height: 2.4em;
+}
+
+.hide-on-small-screen {
+  display: block;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+.radio-button {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid grey;
+  margin-right: 10px;
+  position: relative;
+  top: 2px;
+}
+
+input[type="radio"]:checked + label .radio-button {
+  background-color: #03adf5;
+}
+
+input[type="radio"] + label {
+  font-size: 15px;
+  color: #000;
+  padding-left: 28px;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background-color: #333;
+}
+
+.tube-form {
+  max-width: 80%;
+  margin: 0 auto;
+  display:flex;
+}
+
+.radio-group {
+  text-align: center;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.form-label {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: #FFF;
+  background-color: #000;
+  padding: 10px;
+  margin: 0;
+}
+
+.submit-button {
+  padding: 10px;
+  font-size: 12px;
+  color: #FFF;
+  background-color: #000;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.submit-button:hover {
+  background-color: #333;
+}
+
+@media screen and (max-width: 600px) {
+  .hide-on-small-screen {
+    display: none;
+  }
 }

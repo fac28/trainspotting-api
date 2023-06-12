@@ -11,23 +11,41 @@
     <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@500&display=swap" rel="stylesheet">
   </head>
   <body>
-    <h1>Departure Times</h1>
+    <h1>Victoria Line</h1>
 
-    <form>
-      <label for="station">Choose a station:</label>
-      <select id="station">
-        <option value="Euston Station">Euston</option>
-        <option value="Finsbury Park Station">Finsbury Park</option>
-        <option value="Vauxhall Station">Vauxhall</option>
-      </select>
-      <input type="submit" value="Submit">
+    <form class="tube-form">
+      <h2 class="form-label">Choose your station</h2>
+
+      <div class="radio-group">
+        <input type="radio" id="euston" name="station" value="Euston Station" checked>
+        <label for="euston"><span class="radio-button"></span>Euston</label>
+      </div>
+
+      <div class="radio-group">
+        <input type="radio" id="finsbury-park" name="station" value="Finsbury Park Station">
+        <label for="finsbury-park"><span class="radio-button"></span>Finsbury Park</label>
+      </div>
+
+      <div class="radio-group">
+        <input type="radio" id="green-park" name="station" value="Green Park Station">
+        <label for="green-park"><span class="radio-button"></span>Green Park</label>
+      </div>
+
+      <div class="radio-group">
+        <input type="radio" id="vauxhall" name="station" value="Vauxhall Station">
+        <label for="vauxhall"><span class="radio-button"></span>Vauxhall</label>
+      </div>
+
+      <div class="button-group">
+        <input type="submit" class="submit-button" value="Show me">
+      </div>
     </form>
 
 
 
 
 
-    <h2 id='station-name'>Choose your stations</h3>
+    <h2 id='station-name'>Check here for departure time</h3>
 
     <section id="departureInfo">
 
@@ -37,7 +55,7 @@
           <tr>
             <th>Platform</th>
             <th>Destination</th>
-            <th>Arrival Time</th>
+            <th class="hide-on-small-screen">Arrival</th>
             <th>Arriving in</th>
           </tr>
         </thead>
@@ -56,12 +74,10 @@
       <h3> Northbound</h2>
       <table id="outbound-table">
         <thead>
-          <tr>
-            <th>Platform</th>
+          <th>Platform</th>
             <th>Destination</th>
-            <th>Arrival Time</th>
+            <th class="hide-on-small-screen">Arrival</th>
             <th>Arriving in</th>
-          </tr>
         </thead>
         <tbody>
           <!-- Loop through the array and populate the table -->
