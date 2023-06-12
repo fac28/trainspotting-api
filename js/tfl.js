@@ -10,6 +10,7 @@ const stationNames = {
   "Euston Station": "940GZZLUEUS",
   "Finsbury Park Station": "940GZZLUFPK",
   "Vauxhall Station": "940GZZLUVXL",
+  "Green Park Station": "940GZZLUGPK"
 };
 
 function getDepartureTimes(station = "Finsbury Park") {
@@ -169,7 +170,12 @@ function populateTable(array, direction) {
         !["direction", "timeToStationMinutes", "stationName"].includes(key)
       ) {
         const cell = document.createElement("td");
-        cell.textContent = item[key];
+
+        if (key === "ArrivalTime") {
+          // Hide the cell for smaller screens
+          cell.classList.add("hide-on-small-screen");
+        }
+        cell.textContent = item[key]
         row.appendChild(cell);
       }
     }
@@ -180,7 +186,8 @@ function populateTable(array, direction) {
 
 function handleSubmit(event) {
   event.preventDefault();
-  const station = document.querySelector("#station").value;
+  const station = document.querySelector('input[name="station"]:checked').value;
+
   console.log("user selected: ", station);
 
   getDepartureTimes(station);
@@ -194,7 +201,7 @@ function clearTable(tableBody) {
     tableBody.firstChild.remove();
   }
 
-  let stationName = document.querySelector("#station").value;
+  let stationName = document.querySelector('input[name="station"]:checked').value;;
 
   stationNameElement.textContent = stationName;
 }
