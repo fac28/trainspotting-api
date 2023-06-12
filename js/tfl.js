@@ -1,9 +1,11 @@
 const table = document.querySelector("table");
 const inboundTable = document.querySelector("#inbound-table");
 const outboundTable = document.querySelector("#outbound-table");
+const form = document.querySelector("form");
 
+form.addEventListener("submit", handleSubmit);
 
-// create object of station names and their ids
+// object of station names and their ids
 const stationNames = {
   "Euston Station": "940GZZLUEUS",
   "Finsbury Park Station": "940GZZLUFPK",
@@ -123,9 +125,7 @@ function sortDepartures(departureInfoArray) {
 
   console.log("sorted departures", sortedDepartures);
 
-  /* separate departureInfoArray by direction
-  as two arrays: northboud and southbound
-  */
+  // separate departureInfoArray by direction
 
   const northbound = sortedDepartures.filter(
     (departure) => departure.direction === "outbound"
@@ -133,6 +133,13 @@ function sortDepartures(departureInfoArray) {
   const southbound = sortedDepartures.filter(
     (departure) => departure.direction === "inbound"
   );
+
+  //if either array is empty, apply handleNoInfo
+  if (northbound.length === 0) {
+    handleNoInfo("outbound");
+  } else if (southbound.length === 0) {
+    handleNoInfo("inbound");
+  }
 
   //keep maximum of 3 departures per direction
   const northboundNew = northbound.slice(0, 3);
@@ -165,10 +172,6 @@ function populateTable(array, direction) {
   }
   console.log(direction + " information added to table");
 }
-
-//retrieve user choice in the form selector
-const form = document.querySelector("form");
-form.addEventListener("submit", handleSubmit);
 
 function handleSubmit(event) {
   event.preventDefault();
