@@ -5,9 +5,9 @@ const outboundTable = document.querySelector("#outbound-table");
 
 // create object of station names and their ids
 const stationNames = {
-  "Euston": "940GZZLUEUS",
-  "Finsbury Park": "940GZZLUFPK",
-  "Vauxhall": "940GZZLUVXL",
+  "Euston Station": "940GZZLUEUS",
+  "Finsbury Park Station": "940GZZLUFPK",
+  "Vauxhall Station": "940GZZLUVXL",
 };
 
 function getDepartureTimes(station = "Finsbury Park") {
@@ -24,24 +24,15 @@ function getDepartureTimes(station = "Finsbury Park") {
         throw new Error("Error retrieving departure times");
       }
     })
-    .then((allDepartures) => {
-      // only keep departures from Finsbury Park
-      console.log('all', allDepartures)
-      // const departures = allDepartures.filter((departure) =>
-      //   departure.stationName.includes("Finsbury Park")
-      // );
+    .then((departures) => {
+      // checking the data
+      console.log('all', departures)
 
-      const departures = allDepartures;
-
-      // display error message if no train found (not tested yet)
+      // no information for both directions
       if (departures.length === 0) {
-        console.log("No departures");
 
-        const row = document.createElement("tr");
-        const cell = document.createElement("td");
-        cell.textContent = "Sorry, no train info available at the moment.";
-        row.appendChild(cell);
-        table.appendChild(row);
+        handleNoInfo('inbound');
+        handleNoInfo('outbound');
         return;
       }
 
@@ -132,8 +123,9 @@ function sortDepartures(departureInfoArray) {
 
   console.log("sorted departures", sortedDepartures);
 
-  /* separate departureInfoArray by direction, as two arrays
-  and another one for no direction */
+  /* separate departureInfoArray by direction
+  as two arrays: northboud and southbound
+  */
 
   const northbound = sortedDepartures.filter(
     (departure) => departure.direction === "outbound"
@@ -141,13 +133,6 @@ function sortDepartures(departureInfoArray) {
   const southbound = sortedDepartures.filter(
     (departure) => departure.direction === "inbound"
   );
-  const noDirection = sortedDepartures.filter(
-    (departure) => departure.direction === ""
-  );
-
-  // only keep the first instance of the same timeToStationMinutes
-  removeDuplicates(northbound);
-  removeDuplicates(southbound);
 
   //keep maximum of 3 departures per direction
   const northboundNew = northbound.slice(0, 3);
@@ -175,18 +160,11 @@ function removeDuplicates(array) {
 
 function populateTable(array, direction) {
 
+  // define table body
   const currentTable = direction === "inbound" ? inboundTable : outboundTable;
-
-  // Clear the tablebody
   const tableBody = currentTable.querySelector("tbody");
-  while (tableBody.firstChild) {
-    tableBody.firstChild.remove();
-  }
 
-  // target the h3 element with id station-name to fill in station name
-  const stationName = array[0].stationName;
-  const stationNameElement = document.getElementById("station-name");
-  stationNameElement.textContent = stationName;
+  clearTable(tableBody);
 
   // function to loop through array and populate table accordingly
   for (const item of array) {
@@ -202,8 +180,8 @@ function populateTable(array, direction) {
       }
     }
     tableBody.appendChild(row);
-    console.log(direction + " information added to table");
   }
+  console.log(direction + " information added to table");
 }
 
 //retrieve user choice in the form selector
@@ -219,15 +197,35 @@ function handleSubmit(event) {
   return;
 }
 
-function clearTable(tableId) {
-  var tableBody = document.querySelector("#" + tableId + " tbody");
-  var tableRows = tableBody.querySelectorAll("tr");
+function clearTable(tableBody){
+  const stationNameElement = document.getElementById("station-name");
 
-  // Remove all <tr> elements
-  for (var i = 0; i < tableRows.length; i++) {
-    var row = tableRows[i];
-    row.remove();
+  while (tableBody.firstChild) {
+    tableBody.firstChild.remove();
   }
 
-  localStorage.removeItem("myStorage");
+  let stationName = document.querySelector("#station").value;
+
+  stationNameElement.textContent = stationName;
+}
+
+function handleNoInfo(direction){
+  console.log("No departures for " + direction + " at this time");
+
+  const currentTable = direction === "inbound" ? inboundTable : outboundTable;
+
+  // remove thead
+  const tableHead = currentTable.querySelector("thead");
+  tableHead.remove();
+
+  const tableBody = currentTable.querySelector("tbody");
+
+  clearTable(tableBody);
+
+  const row = document.createElement("tr");
+  const cell = document.createElement("td");
+  cell.textContent = 'No departure info at this time';
+  row.appendChild(cell);
+  tableBody.appendChild(row);
+  return;
 }
