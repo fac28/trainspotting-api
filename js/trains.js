@@ -8,7 +8,11 @@ const flickr_url = "https://api.flickr.com/services/rest/?api_key=0fa41c7f9709b1
 async function getFlickrPhotos() {
   const response = await fetch(flickr_url);
   const data = await response.json();
-  const photo = data.photos.photo[1];
+
+  // generate random index 1 to 100
+  const randomNumber = Math.floor(Math.random() * 100) + 1;
+
+  const photo = data.photos.photo[randomNumber];
   const img_url = "http://farm" + photo.farm + ".static.flickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_z.jpg";
   console.log(img_url);
   return img_url;
