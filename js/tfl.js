@@ -27,24 +27,25 @@ function getDepartureTimes(station = "Finsbury Park") {
       }
     })
     .then((departures) => {
-      // checking the data
       console.log('all', departures)
 
-      // no information for both directions
-      if (departures.length === 0) {
+      /*
+      display error info for both directions
+      when there's no departure info
+      */
 
+      if (departures.length === 0) {
         handleNoInfo('inbound');
         handleNoInfo('outbound');
         return;
       }
 
+      // display current time in BST
       const currentTime = departures[0].timestamp;
-      const stationName = departures[0].stationName;
       const currentTimeBST = new Date(currentTime).toLocaleTimeString("en-GB", {
         timeZone: "Europe/London",
       });
       console.log("Current Time:", currentTimeBST);
-      console.log("Station Name:", stationName);
 
       retrieveDepartureTimes(departures);
 
@@ -62,10 +63,15 @@ function getDepartureTimes(station = "Finsbury Park") {
 
 function retrieveDepartureTimes(departures) {
   /*
-  given an object of departures, return an array of objects
-  with the following properties:
-  departureNumber, platform, destination, timeToStationMinutes,
-  arriveIn, ArrivalTime, direction
+  given an object of departures info,
+  return an array of objects with the following properties:
+
+  - platform,
+  - destination,
+  - timeToStationMinutes,
+  - arriveIn (string),
+  - ArrivalTime,
+  - direction
   */
 
   const departureInfoArray = [];
@@ -94,14 +100,12 @@ function retrieveDepartureTimes(departures) {
     if (destination === "Walthamstow Central ") {
       destination = "Walthamstow Central";
       direction = "outbound";
-    }
-    if (destination === "Brixton ") {
+    } else if (destination === "Brixton ") {
       destination = "Brixton";
       direction = "inbound";
     }
 
     let departureInfo = {
-      departureNumber: i + 1,
       platform: platform,
       destination: destination,
       timeToStationMinutes: timeToStationMinutes,
@@ -111,7 +115,8 @@ function retrieveDepartureTimes(departures) {
       stationName: stationName,
     };
 
-    departureInfoArray.push(departureInfo); // Append departureInfo object to the array
+    // Append departureInfo object to the array
+    departureInfoArray.push(departureInfo);
   }
 
   localStorage.setItem("myStorage", JSON.stringify(departureInfoArray));
@@ -126,7 +131,6 @@ function sortDepartures(departureInfoArray) {
   console.log("sorted departures", sortedDepartures);
 
   // separate departureInfoArray by direction
-
   const northbound = sortedDepartures.filter(
     (departure) => departure.direction === "outbound"
   );
@@ -134,7 +138,7 @@ function sortDepartures(departureInfoArray) {
     (departure) => departure.direction === "inbound"
   );
 
-  //if either array is empty, apply handleNoInfo
+  // if either array is empty, apply handleNoInfo to display error message
   if (northbound.length === 0) {
     handleNoInfo("outbound");
   } else if (southbound.length === 0) {
@@ -144,11 +148,11 @@ function sortDepartures(departureInfoArray) {
   //keep maximum of 3 departures per direction
   const northboundNew = northbound.slice(0, 3);
   const southboundNew = southbound.slice(0, 3);
+
   return [northboundNew, southboundNew];
 }
 
 function populateTable(array, direction) {
-
   // define table body
   const currentTable = direction === "inbound" ? inboundTable : outboundTable;
   const tableBody = currentTable.querySelector("tbody");
@@ -160,8 +164,7 @@ function populateTable(array, direction) {
     const row = document.createElement("tr");
     for (const key in item) {
       if (
-        !["direction", "departureNumber",
-        "timeToStationMinutes", "stationName"].includes(key)
+        !["direction", "timeToStationMinutes", "stationName"].includes(key)
       ) {
         const cell = document.createElement("td");
         cell.textContent = item[key];
@@ -176,13 +179,13 @@ function populateTable(array, direction) {
 function handleSubmit(event) {
   event.preventDefault();
   const station = document.querySelector("#station").value;
-  console.log("station: ", station);
+  console.log("user selected: ", station);
 
   getDepartureTimes(station);
   return;
 }
 
-function clearTable(tableBody){
+function clearTable(tableBody) {
   const stationNameElement = document.getElementById("station-name");
 
   while (tableBody.firstChild) {
@@ -194,19 +197,18 @@ function clearTable(tableBody){
   stationNameElement.textContent = stationName;
 }
 
-function handleNoInfo(direction){
+function handleNoInfo(direction) {
   console.log("No departures for " + direction + " at this time");
 
   const currentTable = direction === "inbound" ? inboundTable : outboundTable;
 
-  // remove thead
+  // remove thead and tbody
   const tableHead = currentTable.querySelector("thead");
-  tableHead.remove();
-
   const tableBody = currentTable.querySelector("tbody");
-
+  tableHead.remove();
   clearTable(tableBody);
-
+  
+  // add error message
   const row = document.createElement("tr");
   const cell = document.createElement("td");
   cell.textContent = 'No departure info at this time';
