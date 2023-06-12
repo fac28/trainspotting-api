@@ -1,5 +1,5 @@
 * {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Azeret Mono', monospace;
     box-sizing: border-box;
 }
 img {
@@ -29,8 +29,8 @@ body {
     text-align: center;
     flex-grow: 1;
     margin-right: 1rem;
-    color: #6200FF;
-    letter-spacing: .2rem;
+    color: #000;
+    /* letter-spacing: .2rem; */
 }
 
 .logo {
@@ -38,7 +38,7 @@ body {
 }
 .logo__icon {
     font-size: 2rem;
-    color: #6200FF;
+    color: #000;
 }
 
 
@@ -49,20 +49,12 @@ body {
     padding: 1rem;
     margin: 1rem;
     font-size: 1.3rem;
-    color: #fff;
+    color: yellow;
+    font-weight: 200;
+    background-color: #000e;
     letter-spacing: .05rem;
-    position: relative;
 } 
 
-.description::after {
-    content: '';
-    position: absolute;
-    border-radius: 1rem;
-    inset: 0;
-    z-index: -1;
-    background-color: #565459;
-    mix-blend-mode: screen;
-}
 
 
 
@@ -80,10 +72,9 @@ body {
 .link {
     font-size: 1.3rem;
     text-decoration: none;
-    background-color: #6200FF;
-    color: #fff;
+    background-color: yellow;
+    color: black;
     padding: 2rem;
-    border-radius: 1rem;
 }
 
 .link:hover {
