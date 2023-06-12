@@ -89,10 +89,12 @@ function retrieveDepartureTimes(departures) {
     const timeToStationMinutes = Math.floor(timeToStation / 60);
     const expectedArrival = departure.expectedArrival;
     // adjust for british summer time
-    const adjustedArrival = new Date(expectedArrival).toLocaleTimeString(
+    let adjustedArrival = new Date(expectedArrival).toLocaleTimeString(
       "en-GB",
       { timeZone: "Europe/London" }
     );
+    // only keep the hour and minute
+    adjustedArrival= adjustedArrival.slice(0, -3);
     let direction = departure.direction;
     const stationName = departure.stationName;
 
@@ -109,8 +111,8 @@ function retrieveDepartureTimes(departures) {
       platform: platform,
       destination: destination,
       timeToStationMinutes: timeToStationMinutes,
-      arriveIn: timeToStationMinutes + " mins",
       ArrivalTime: adjustedArrival,
+      arriveIn: timeToStationMinutes + " mins",
       direction: direction,
       stationName: stationName,
     };
@@ -207,7 +209,7 @@ function handleNoInfo(direction) {
   const tableBody = currentTable.querySelector("tbody");
   tableHead.remove();
   clearTable(tableBody);
-  
+
   // add error message
   const row = document.createElement("tr");
   const cell = document.createElement("td");
