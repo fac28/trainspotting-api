@@ -140,24 +140,6 @@ function sortDepartures(departureInfoArray) {
   return [northboundNew, southboundNew];
 }
 
-function removeDuplicates(array) {
-  // remove duplicate departures with the same timeToStationMinutes and platform
-  for (let i = 0; i < array.length - 1; i++) {
-    const departure = array[i];
-    const timeToStation = departure.timeToStationMinutes;
-    const nextDeparture = array[i + 1];
-    const nextTimeToStation = nextDeparture.timeToStationMinutes;
-    const platform = departure.platform;
-    if (
-      timeToStation === nextTimeToStation &&
-      platform === nextDeparture.platform
-    ) {
-      array.splice(i + 1, 1);
-      i--; // Adjust the index to revisit the current position
-    }
-  }
-}
-
 function populateTable(array, direction) {
 
   // define table body
