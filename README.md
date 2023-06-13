@@ -2,7 +2,7 @@
 
 See the Beauty, Catch the Ride!
 
-A sleek display that brings you stunning visuals and live departure times from your stations
+A sleek display that brings you stunning visuals and live departure times from your stations.
 
 ## User Journey
 
@@ -25,6 +25,8 @@ Go to the project directory
 
 Open the file in your browser
 
+Mac:
+
 ```bash
   open index.html
 ```
@@ -37,6 +39,7 @@ View our site on [GitHub Pages](https://fac28.github.io/api/)
 ## Tech Stack
 
 HTML, CSS, JavaScript
+FastAPI, Google Cloud platform
 
 
 ## Acknowledgements
