@@ -101,7 +101,7 @@ function retrieveDepartureTimes(departures) {
 
     // removing white space from destination and filling in missing direction
     if (destination === "Walthamstow Central ") {
-      destination = "Walthamstow Central";
+      destination = "Walthamstow";
       direction = "outbound";
     } else if (destination === "Brixton ") {
       destination = "Brixton";
