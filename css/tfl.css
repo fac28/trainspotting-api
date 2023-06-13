@@ -12,7 +12,7 @@ h2 {
   font-size: 1.5rem;
 }
 
-h3 {
+h3, .error-message {
   font-size: 1.2rem;
 }
 
