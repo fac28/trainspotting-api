@@ -6,13 +6,12 @@ img {
     max-width: 100%;
 }
 
-body {
-    background-image: url('https://picsum.photos/id/348/1800/1000');
+.body {
+    /* background-image: url('https://picsum.photos/id/348/1800/1000'); */
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
-    isolation: isolate;
 }
 
 
@@ -30,7 +29,6 @@ body {
     flex-grow: 1;
     margin-right: 1rem;
     color: #000;
-    /* letter-spacing: .2rem; */
 }
 
 .logo {
@@ -51,10 +49,8 @@ body {
     font-size: 1.3rem;
     color: yellow;
     font-weight: 200;
-    background-color: #000e;
-    letter-spacing: .05rem;
+    background-color: #000d; 
 } 
-
 
 
 
