@@ -204,6 +204,7 @@ function clearTable(tableBody) {
   let stationName = document.querySelector('input[name="station"]:checked').value;;
 
   stationNameElement.textContent = stationName;
+  return;
 }
 
 function handleNoInfo(direction) {
@@ -217,10 +218,12 @@ function handleNoInfo(direction) {
   tableHead.remove();
   clearTable(tableBody);
 
-  // add error message
+  // add error message to the current table
   const row = document.createElement("tr");
+  // set the class of row to be error_message
+  row.classList.add("error-message");
   const cell = document.createElement("td");
-  cell.textContent = 'No departure info at this time';
+  cell.textContent = "No departure info at this time";
   row.appendChild(cell);
   tableBody.appendChild(row);
   return;
