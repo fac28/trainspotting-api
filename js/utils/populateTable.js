@@ -1,0 +1,31 @@
+import { inboundTable, outboundTable } from "../constants/constants.js";
+import { clearTable } from "./clearTable.js";
+
+export const populateTable = (array, direction) => {
+  // define table body
+  const currentTable = direction === "inbound" ? inboundTable : outboundTable;
+  const tableBody = currentTable.querySelector("tbody");
+
+  clearTable(tableBody);
+
+  // function to loop through array and populate table accordingly
+  for (const item of array) {
+    const row = document.createElement("tr");
+    for (const key in item) {
+      if (
+        !["direction", "timeToStationMinutes", "stationName"].includes(key)
+      ) {
+        const cell = document.createElement("td");
+
+        if (key === "ArrivalTime") {
+          // Hide the cell for smaller screens
+          cell.classList.add("hide-on-small-screen");
+        }
+        cell.textContent = item[key]
+        row.appendChild(cell);
+      }
+    }
+    tableBody.appendChild(row);
+  }
+  console.log(direction + " information added to table");
+}
