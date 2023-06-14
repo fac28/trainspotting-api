@@ -24,11 +24,18 @@ Go to the project directory
 ```
 
 Open the file in your browser
+<br>
 
 Mac:
 
 ```bash
   open index.html
+```
+
+Windows:
+
+```bash
+  explorer.exe index.html
 ```
 
 
@@ -39,7 +46,8 @@ View our site on [GitHub Pages](https://fac28.github.io/api/)
 ## Tech Stack
 
 HTML, CSS, JavaScript
-FastAPI, Google Cloud platform
+
+Access the TfL API proxy we built [here](https://tfl-irbcjbnqca-og.a.run.app/search) using FastAPI and Google Cloud platform
 
 
 ## Acknowledgements
