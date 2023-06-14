@@ -38,15 +38,16 @@ th, td {
   overflow: scroll;
   word-break: break-word;
   word-wrap: break-word;
-  font-size: 0.8 rem;
 }
 
 th {
   color: yellow;
+  text-align: left;
 }
 
 td {
   color: whitesmoke;
+  align-content: right;
 }
 
 
