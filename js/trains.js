@@ -1,4 +1,3 @@
-
 const flickr_search_term = "train"
 
 const flickr_url = "https://api.flickr.com/services/rest/?api_key=0fa41c7f9709b1d850756011e09bbef6&format=json&sort=interestingness-desc&method=flickr.photos.search&tags="
