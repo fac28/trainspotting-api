@@ -6,7 +6,7 @@ A sleek display that brings you stunning visuals and live departure times from y
 
 ## User Journey
 
-Enjoy a random picture on our landing page, and go checkout the latest departure time when you're ready.
+Start from our landing page, and go checkout the latest departure time when you're ready.
 
 
 ## Run Locally
@@ -14,13 +14,13 @@ Enjoy a random picture on our landing page, and go checkout the latest departure
 Clone the project
 
 ```bash
-  gh repo clone fac28/api
+  gh repo clone fac28/trainspotting-api
 ```
 
 Go to the project directory
 
 ```bash
-  cd api
+  cd trainspotting-api
 ```
 
 Open the file in your browser
