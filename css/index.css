@@ -12,6 +12,10 @@ img {
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 
@@ -20,8 +24,8 @@ img {
 .header {
     background-color: #fff5;
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
 }
 
 .header__title {
@@ -53,26 +57,36 @@ img {
 } 
 
 
+/* ////////////////////  MAIN  ///////////////////////// */
 
 
-/* to center the button vertically */
+.main {
 
- main {
-    height: 40vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+}
+
+.link__wrapper {
+    text-align: center;
+    background-color: yellow;
+    padding: 2rem;
+    margin: 0 10vw;
 }
 
 .link {
     font-size: 1.3rem;
     text-decoration: none;
-    background-color: yellow;
     color: black;
-    padding: 2rem;
+    
 }
 
 .link:hover {
     cursor: pointer;
+    text-decoration: underline;
+}
+
+.background-pic__wrapper {
+    margin-bottom: 1rem;
+    background-color: #fff5;
+    margin: 0 1rem;
+    line-height: .1rem;
+    text-shadow: .5px .5px 2px yellow;
 }
