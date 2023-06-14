@@ -11,7 +11,7 @@ const init = async () => {
     try {
         const result = await getImage();
         body.style.backgroundImage = `url(${result.download_url})`;
-        author.textContent = `Author: ${result.author}`
+        author.textContent = `${result.author}`
     } catch(error) {
         console.error(error);
     }
