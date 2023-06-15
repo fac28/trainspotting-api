@@ -1,4 +1,3 @@
-const body = document.querySelector('.body');
 const author = document.querySelector('.background-pic__author')
 
 const getImage = async () => {
@@ -10,9 +9,10 @@ const getImage = async () => {
 const init = async () => {
     try {
         const result = await getImage();
-        body.style.backgroundImage = `url(${result.download_url})`;
         author.textContent = `${result.author}`
-    } catch(error) {
+    } 
+    
+    catch(error) {
         console.error(error);
     }
 }
