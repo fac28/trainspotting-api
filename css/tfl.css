@@ -12,7 +12,7 @@ h2 {
   font-size: 1.5rem;
 }
 
-h3, .error-message {
+h3 {
   font-size: 1.2rem;
 }
 
@@ -23,7 +23,7 @@ table {
   text-align: center;
   background-color: black;
   border-collapse: collapse;
-  height: 200px;
+  height: 180px;
 }
 
 tr {
@@ -152,7 +152,7 @@ input[type="radio"] + label {
   }
 }
 
-/* ////////////////  HEADER ///////////////// */
+/* ////////////////  HEADER AND FOOTER ///////////////// */
 
 .header {
   background-color: lightblue;
@@ -172,7 +172,19 @@ input[type="radio"] + label {
 .logo {
   margin-left: 1rem;
 }
+
 .logo__icon {
   font-size: 2rem;
   color: #000;
+}
+
+.footer {
+  background-color: rgba(118, 221, 244, 0.333);
+  padding: .5rem;
+  margin-top: 20px;
+}
+
+.footer p {
+  /* margin: .5rem 0; */
+  font-size: .8rem;
 }
