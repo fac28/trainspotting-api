@@ -12,7 +12,7 @@ h2 {
   font-size: 1.5rem;
 }
 
-h3, .error-message {
+h3 {
   font-size: 1.2rem;
 }
 
@@ -23,7 +23,7 @@ table {
   text-align: center;
   background-color: black;
   border-collapse: collapse;
-  height: 200px;
+  height: 180px;
 }
 
 tr {
