@@ -1,3 +1,5 @@
+import { handleNoInfo } from "./handleNoInfo.js";
+
 export const sortDepartures = (departureInfoArray) => {
   //sort departureInfoArray by timeToStationMinutes
   const sortedDepartures = departureInfoArray.sort(
@@ -17,7 +19,9 @@ export const sortDepartures = (departureInfoArray) => {
   // if either array is empty, apply handleNoInfo to display error message
   if (northbound.length === 0) {
     handleNoInfo("outbound");
-  } else if (southbound.length === 0) {
+  }
+
+  if (southbound.length === 0) {
     handleNoInfo("inbound");
   }
 

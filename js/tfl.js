@@ -16,7 +16,7 @@ function handleSubmit(event) {
   return;
 }
 
-function getDepartureTimes(station = "Finsbury Park") {
+function getDepartureTimes(station) {
   // retrieve station id from station name
   const station_id = stationNames[station];
   // query the tfl proxy we made
