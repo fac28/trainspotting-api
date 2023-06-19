@@ -39,7 +39,11 @@ stations.forEach(station => {
   const radioSpan = document.createElement("span");
   radioSpan.className = "radio-button";
 
-  const labelText = document.createTextNode(station.name.split(" ").splice(0, 2).join(" "));
+  let stationName = station.name;
+
+  stationName = stationName.replace(" Station", "");
+
+  const labelText = document.createTextNode(stationName);
   radioLabel.appendChild(radioSpan);
   radioLabel.appendChild(labelText);
 
