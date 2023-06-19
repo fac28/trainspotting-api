@@ -20,7 +20,6 @@ export const handleNoInfo = (direction) => {
   const cell = document.createElement("td");
   cell.textContent = "No departure info at this time";
   row.appendChild(cell);
-  console.log(tableBody)
   tableBody.appendChild(row);
   return;
 }
