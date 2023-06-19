@@ -98,10 +98,21 @@ input[type="radio"] + label {
   background-color: #333;
 }
 
-.tube-form {
+/* .tube-form {
   max-width: 80%;
   margin: 0 auto;
   display:flex;
+} */
+
+.tube-form {
+  max-width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: space-between;
+  align-items: flex-start;
 }
 
 .radios {
@@ -134,12 +145,15 @@ input[type="radio"] + label {
   color: #FFF;
   background-color: black;
   border: none;
-  border-radius: 2px;
   cursor: pointer;
-  margin-left: 10px;
-  height: 100%;
   white-space: normal;
   min-width: 50px;
+}
+
+.form-label, .submit-button, #radio-container {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 10px;
 }
 
 .submit-button:hover {

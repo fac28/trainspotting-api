@@ -13,8 +13,16 @@ Start from our landing page, and go checkout the latest departure time when you'
 
 Clone the project
 
+Option 1: if you have [GitHub CLI installed](https://github.com/cli/cli/tree/trunk)
+
 ```bash
   gh repo clone fac28/trainspotting-api
+```
+
+Option 2:
+
+```bash
+  git clone https://github.com/fac28/trainspotting-api.git
 ```
 
 Go to the project directory
@@ -47,7 +55,7 @@ View our site on [GitHub Pages](https://fac28.github.io/trainspotting-api/)
 
 HTML, CSS, JavaScript
 
-Access the TfL API proxy we built [here](https://tfl-irbcjbnqca-og.a.run.app/search) using FastAPI and Google Cloud platform
+Access the TfL API proxy we built [here](https://tfl-irbcjbnqca-og.a.run.app/search) (an example of Finsbury Park Station) using FastAPI, Docker and Google Cloud platform
 
 
 ## Acknowledgements
@@ -56,4 +64,6 @@ APIs we used:
 
 - [Unsplash It](https://picsum.photos/): Generates random images
 
-- [TfL Api](https://api-portal.tfl.gov.uk/): Everything you need to know about transport in London
+- [TfL API](https://api-portal.tfl.gov.uk/): Everything you need to know about transport in London
+
+NaPTAN ID list from [ZackaryH8/tube-naptan](https://github.com/ZackaryH8/tube-naptan)
