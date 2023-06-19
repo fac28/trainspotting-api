@@ -10,10 +10,15 @@ export const handleNoInfo = (direction) => {
   const tableHead = currentTable.querySelector("thead");
   const tableBody = currentTable.querySelector("tbody");
 
-  if (tableHead){
-    tableHead.remove();
-  }
-  
+  //hide tableHead
+  tableHead.style.display = "none";
+
+
+
+  // if (tableHead){
+  //   tableHead.remove();
+  // }
+
   clearTable(tableBody);
 
   const row = document.createElement("tr");

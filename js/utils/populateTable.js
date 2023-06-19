@@ -4,6 +4,9 @@ import { clearTable } from "./clearTable.js";
 export const populateTable = (array, direction) => {
   // define table body
   const currentTable = direction === "inbound" ? inboundTable : outboundTable;
+  // show tablehead
+  const tableHead = currentTable.querySelector("thead");
+  tableHead.style.display = "table-header-group";
   const tableBody = currentTable.querySelector("tbody");
 
   clearTable(tableBody);
