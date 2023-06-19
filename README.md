@@ -55,7 +55,7 @@ View our site on [GitHub Pages](https://fac28.github.io/trainspotting-api/)
 
 HTML, CSS, JavaScript
 
-Access the TfL API proxy we built [here](https://tfl-irbcjbnqca-og.a.run.app/docs) (Finsbury Park Station is used as the default here) using [FastAPI](https://github.com/tiangolo/fastapi), Docker and Google Cloud platform
+Access the [TfL API proxy we built](https://tfl-irbcjbnqca-og.a.run.app/docs) (Finsbury Park Station is used as the default here) using [FastAPI](https://github.com/tiangolo/fastapi), Docker and Google Cloud platform
 
 
 ## Acknowledgements
