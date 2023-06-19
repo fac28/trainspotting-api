@@ -9,6 +9,13 @@ form.addEventListener("submit", handleSubmit);
 
 function handleSubmit(event) {
   event.preventDefault();
+
+  // if no selection made, pop up an alert asking user to select a station
+  if (!document.querySelector('input[name="station"]:checked')) {
+    alert("Please search for and select a station");
+    return;
+  }
+
   const station = document.querySelector('input[name="station"]:checked').value;
 
   console.log("user selected: ", station);

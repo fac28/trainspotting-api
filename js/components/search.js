@@ -3,7 +3,7 @@ const stations = [
   { id: "blackhorse-road", name: "Blackhorse Road Station" },
   { id: "tottenham-hale", name: "Tottenham Hale Station" },
   { id: "seven-sisters", name: "Seven Sisters Station" },
-  { id: "finsbury-park", name: "Finsbury Park Station", checked: true },
+  { id: "finsbury-park", name: "Finsbury Park Station" },
   { id: "highbury-islington", name: "Highbury & Islington Station" },
   { id: "kings-cross", name: "Kings Cross St. Pancras Station" },
   { id: "euston", name: "Euston Station"},
