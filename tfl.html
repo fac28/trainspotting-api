@@ -27,9 +27,13 @@
     <h1>Victoria Line</h1>
 
     <form class="tube-form">
-      <h2 class="form-label">Scroll to pick your station</h2>
+      <h2 class="form-label">Pick your station</h2>
 
-      <div class="radios" id="radio-container"></div>
+      <!-- <div class="radios" id="radio-container"></div> -->
+      <div id="radio-container">
+        <input type="text" id="search-bar" placeholder="Search station">
+        <div id="results-container"></div>
+      </div>
 
       <div class="button-group">
         <input type="submit" class="submit-button" value="Click here to show">
@@ -98,7 +102,7 @@
       </p>
     </footer>
     <script src="js/tfl.js" type="module"></script>
-    <script src="js/components/radios.js" type="module"></script>
+    <script src="js/components/search.js" type="module"></script>
     <script src="https://kit.fontawesome.com/7a65a08da4.js" crossorigin="anonymous"></script>
   </body>
 </html>
