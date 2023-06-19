@@ -29,29 +29,7 @@
     <form class="tube-form">
       <h2 class="form-label">Scroll to pick your station</h2>
 
-      <div class="radios">
-
-        <div class="radio-group">
-          <input type="radio" id="euston" name="station" value="Euston Station" checked>
-          <label for="euston"><span class="radio-button"></span>Euston</label>
-        </div>
-
-        <div class="radio-group">
-          <input type="radio" id="finsbury-park" name="station" value="Finsbury Park Station">
-          <label for="finsbury-park"><span class="radio-button"></span>Finsbury Park</label>
-        </div>
-
-        <div class="radio-group">
-          <input type="radio" id="green-park" name="station" value="Green Park Station">
-          <label for="green-park"><span class="radio-button"></span>Green Park</label>
-        </div>
-
-        <div class="radio-group">
-          <input type="radio" id="vauxhall" name="station" value="Vauxhall Station">
-          <label for="vauxhall"><span class="radio-button"></span>Vauxhall</label>
-
-      </div>
-    </div>
+      <div class="radios" id="radio-container"></div>
 
       <div class="button-group">
         <input type="submit" class="submit-button" value="Click here to show">
@@ -120,6 +98,7 @@
       </p>
     </footer>
     <script src="js/tfl.js" type="module"></script>
+    <script src="js/components/radios.js" type="module"></script>
     <script src="https://kit.fontawesome.com/7a65a08da4.js" crossorigin="anonymous"></script>
   </body>
 </html>
