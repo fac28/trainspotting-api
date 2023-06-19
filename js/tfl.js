@@ -2,7 +2,7 @@ import { stationNames, form, inboundTable, outboundTable } from "./constants/con
 import { retrieveObject } from "./utils/retrieveObject.js";
 import { sortDepartures } from "./utils/sortDepartures.js";
 import { populateTable } from "./utils/populateTable.js";
-import {handleNoInfo} from "./utils/handleNoInfo.js";
+import { handleNoInfo } from "./utils/handleNoInfo.js";
 
 form.addEventListener("submit", handleSubmit);
 
