@@ -52,6 +52,5 @@ stations.forEach(station => {
   radiosContainer.appendChild(radioGroup);
 });
 
-// Append radiosContainer to the desired parent element in your HTML
-// For example, if you have a div with id "radio-container" in your HTML:
+// Append radiosContainer to the placeholder
 document.getElementById("radio-container").appendChild(radiosContainer);
