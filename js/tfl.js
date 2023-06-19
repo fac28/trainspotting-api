@@ -1,4 +1,4 @@
-import { stationNames, form, naptanObject } from "./constants/constants.js";
+import { form, naptanObject } from "./constants/constants.js";
 import { retrieveObject } from "./utils/retrieveObject.js";
 import { sortDepartures } from "./utils/sortDepartures.js";
 import { populateTable } from "./utils/populateTable.js";
