@@ -9,7 +9,11 @@ export const handleNoInfo = (direction) => {
   // remove thead and tbody
   const tableHead = currentTable.querySelector("thead");
   const tableBody = currentTable.querySelector("tbody");
-  tableHead.remove();
+
+  if (tableHead){
+    tableHead.remove();
+  }
+  
   clearTable(tableBody);
 
   const row = document.createElement("tr");
