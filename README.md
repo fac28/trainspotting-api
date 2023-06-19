@@ -2,7 +2,7 @@
 
 See the Beauty, Catch the Ride!
 
-A sleek display that brings you stunning visuals and live departure times from your stations.
+A sleek display that brings you stunning visuals and live departure times for all Victoria Line stations.
 
 ## User Journey
 
@@ -41,7 +41,7 @@ Windows:
 
 ## Deployment
 
-View our site on [GitHub Pages](https://fac28.github.io/api/)
+View our site on [GitHub Pages](https://fac28.github.io/trainspotting-api/)
 
 ## Tech Stack
 
