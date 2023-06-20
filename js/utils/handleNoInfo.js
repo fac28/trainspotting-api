@@ -15,9 +15,7 @@ export const handleNoInfo = (direction) => {
 
 
 
-  // if (tableHead){
-  //   tableHead.remove();
-  // }
+  
 
   clearTable(tableBody);
 

@@ -8,7 +8,8 @@ export const retrieveObject = (departures) =>{
   - timeToStationMinutes,
   - arriveIn (string),
   - ArrivalTime,
-  - direction
+  - direction,
+  - stationName
   */
 
   const departureInfoArray = [];
@@ -18,10 +19,7 @@ export const retrieveObject = (departures) =>{
     const platform = departure.platformName
       .replace("Northbound - Platform ", "")
       .replace("Southbound - Platform ", "");
-    let destination = departure.destinationName.replace(
-      "Underground Station",
-      ""
-    );
+    let destination = departure.destinationName;
     const timeToStation = departure.timeToStation;
     const timeToStationMinutes = Math.floor(timeToStation / 60);
     const expectedArrival = departure.expectedArrival;
@@ -36,17 +34,23 @@ export const retrieveObject = (departures) =>{
     const stationName = departure.stationName;
 
     // removing white space from destination and filling in missing direction
-    if (destination === "Walthamstow Central ") {
-      destination = "Walthamstow";
+
+    let formattedDestination = destination
+    .replace(
+      "Underground Station",
+      ""
+    ).replace("Central","")
+    .trim();
+
+    if (stationName.includes("Walthamstow") && formattedDestination.includes("Walthamstow")) {
       direction = "outbound";
-    } else if (destination === "Brixton ") {
-      destination = "Brixton";
+    } else if (stationName.includes("Brixton") && formattedDestination.includes("Brixton")) {
       direction = "inbound";
     }
 
     let departureInfo = {
       platform: platform,
-      destination: destination,
+      destination: formattedDestination,
       timeToStationMinutes: timeToStationMinutes,
       ArrivalTime: adjustedArrival,
       arriveIn: timeToStationMinutes + " mins",

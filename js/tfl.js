@@ -1,4 +1,4 @@
-import { form, naptanObject } from "./constants/constants.js";
+import { naptanObject, form, tflProxy } from "./constants/constants.js";
 import { retrieveObject } from "./utils/retrieveObject.js";
 import { sortDepartures } from "./utils/sortDepartures.js";
 import { populateTable } from "./utils/populateTable.js";
@@ -22,7 +22,6 @@ function handleSubmit(event) {
 
   // keep only the first word of the station name
   let stationShort = station.split(" ")[0];
-  console.log(stationShort)
 
   getDepartureTimes(stationShort);
   return;
@@ -34,8 +33,8 @@ function getDepartureTimes(station) {
   const station_id = findObjectByKey(naptanObject, station);
   console.log("station id: ", station_id);
   // query the tfl proxy we made
-  const url = "https://tfl-irbcjbnqca-og.a.run.app/search";
-  fetch(url + "?" + station_id)
+  const url = tflProxy;
+  fetch(url + "/" + station_id)
     .then((response) => {
       if (response.ok) {
         return response.json();
@@ -59,6 +58,7 @@ function getDepartureTimes(station) {
       }
 
       // console log current time in BST
+
       const currentTime = departures[0].timestamp;
       const currentTimeBST = new Date(currentTime).toLocaleTimeString("en-GB", {
         timeZone: "Europe/London",
@@ -71,12 +71,12 @@ function getDepartureTimes(station) {
 
       const [northboundNew, southboundNew] = sortDepartures(departureInfoArray);
 
-      // ignore southbund for Brixton and northbound for Walthamstow
-      if (station === "Brixton") {
+      // ignore southbound for Brixton and northbound for Walthamstow
+      if (station.toLowerCase().includes("brixton")) {
         populateTable(northboundNew, "outbound");
         handleNoInfo('inbound');
         return;
-      } else if (station.includes("Walthamstow")) {
+      } else if (station.toLowerCase().includes("walthamstow")) {
         populateTable(southboundNew, "inbound");
         handleNoInfo('outbound');
         return;
