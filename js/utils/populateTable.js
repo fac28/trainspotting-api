@@ -1,7 +1,14 @@
 import { inboundTable, outboundTable } from "../constants/constants.js";
 import { clearTable } from "./clearTable.js";
+import { handleNoInfo } from "./handleNoInfo.js";
 
 export const populateTable = (array, direction) => {
+
+  // if no array, handle no info
+  if (array.length === 0) {
+    handleNoInfo(direction);
+    return;
+  }
   // define table body
   const currentTable = direction === "inbound" ? inboundTable : outboundTable;
   // show tablehead
