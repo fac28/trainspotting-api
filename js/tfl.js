@@ -71,14 +71,14 @@ function getDepartureTimes(station) {
 
       const [northboundNew, southboundNew] = sortDepartures(departureInfoArray);
 
+      console.log([northboundNew, southboundNew])
       // ignore southbound for Brixton and northbound for Walthamstow
       if (station.toLowerCase().includes("brixton")) {
         populateTable(northboundNew, "outbound");
-        handleNoInfo('inbound');
         return;
       } else if (station.toLowerCase().includes("walthamstow")) {
-        populateTable(southboundNew, "inbound");
-        handleNoInfo('outbound');
+        populateTable(northboundNew, "inbound");
+        handleNoInfo("outbound");
         return;
       } else {
         populateTable(northboundNew, "outbound");
