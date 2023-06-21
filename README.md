@@ -33,17 +33,7 @@ Start from our landing page, and go checkout the latest departure time when you'
 
 ### Open the file in your browser
 
-#### Mac:
 
-```bash
-  open index.html
-```
-
-#### Windows:
-
-```bash
-  explorer.exe index.html
-```
 
 
 ## Deployment
