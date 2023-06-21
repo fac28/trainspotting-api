@@ -31,9 +31,25 @@ Start from our landing page, and go checkout the latest departure time when you'
   cd trainspotting-api
 ```
 
-### Open the file in your browser
+and open the folder in vscode
 
+### Open the index.html file with Live Server in Visual Studio Code (VSCode)
 
+#### Install the Live Server extension in VSCode.
+
+If you haven't already installed it, you can do so by following these steps:
+
+- Launch VSCode.
+- Go to the Extensions view.
+- Search for "Live Server" in the Extensions search bar and click the "Install" button.
+
+#### In VSCode 
+- Locate your index.html file. It should be visible in the sidebar on the left-hand side.
+- Right-click on the index.html file and select "Open with Live Server" from the context menu. 
+
+Live Server will open a new browser tab or window and load your index.html file. 
+
+You can now see our webpage in action.
 
 
 ## Deployment
