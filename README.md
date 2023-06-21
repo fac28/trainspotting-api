@@ -11,36 +11,35 @@ Start from our landing page, and go checkout the latest departure time when you'
 
 ## Run Locally
 
-<strong>Clone the project<strong>
+### Clone the project
 
-Option 1: if you have [GitHub CLI installed](https://github.com/cli/cli/tree/trunk)
+#### Option 1: if you have [GitHub CLI installed](https://github.com/cli/cli/tree/trunk)
 
 ```bash
   gh repo clone fac28/trainspotting-api
 ```
 
-Option 2:
+#### Option 2:
 
 ```bash
   git clone https://github.com/fac28/trainspotting-api.git
 ```
 
-<strong>Go to the project directory<strong>
+### Go to the project directory
 
 ```bash
   cd trainspotting-api
 ```
 
-<strong>Open the file in your browser<strong>
-<br>
+### Open the file in your browser
 
-Mac:
+#### Mac:
 
 ```bash
   open index.html
 ```
 
-Windows:
+#### Windows:
 
 ```bash
   explorer.exe index.html
