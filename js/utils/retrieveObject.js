@@ -34,18 +34,21 @@ export const retrieveObject = (departures) =>{
     const stationName = departure.stationName;
 
     // removing white space from destination and filling in missing direction
-
     let formattedDestination = destination
     .replace(
       "Underground Station",
       ""
-    ).replace("Central","")
+    )
+    .replace("Central","")
     .trim();
 
+    // handle the two end stations; force destination to the opposite end station
     if (stationName.includes("Walthamstow") && formattedDestination.includes("Walthamstow")) {
       direction = "outbound";
+      formattedDestination = "Brixton";
     } else if (stationName.includes("Brixton") && formattedDestination.includes("Brixton")) {
-      direction = "inbound";
+      direction = "outbound";
+      formattedDestination = "Walthamstow";
     }
 
     let departureInfo = {
