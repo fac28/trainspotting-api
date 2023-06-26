@@ -57,7 +57,16 @@ function getDepartureTimes(station) {
         return;
       }
 
-      // console log current time in BST
+      // try getting timestamp from first departure or return error message.
+
+      if (!departures[0].timestamp) {
+        console.log("Error retrieving timestamp");
+        handleNoInfo("outbound");
+        handleNoInfo("outbound");
+        console.log(departures[0]);
+        return;
+      }
+
 
       const currentTime = departures[0].timestamp;
       const currentTimeBST = new Date(currentTime).toLocaleTimeString("en-GB", {
