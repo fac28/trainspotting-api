@@ -57,9 +57,9 @@ function getDepartureTimes(station) {
         return;
       }
 
-      // try getting timestamp from first departure or return error message.
+      // check if timestamp is available
 
-      if (!departures[0].timestamp) {
+      if (departures[0].timestamp === undefined) {
         console.log("Error retrieving timestamp");
         handleNoInfo("outbound");
         handleNoInfo("outbound");
