@@ -62,8 +62,7 @@ function getDepartureTimes(station) {
       if (departures[0] === undefined) {
         console.log("Error retrieving timestamp");
         handleNoInfo("outbound");
-        handleNoInfo("outbound");
-        console.log(departures[0]);
+        handleNoInfo("inbound");
         return;
       }
 
